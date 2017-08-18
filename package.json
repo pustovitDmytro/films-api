@@ -1,0 +1,22 @@
+{
+  "name": "football_quiz_api",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "engines": {
+    "node": "4.6.1"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "Dmytro Pustovit",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.17.0",
+    "express": "^4.15.0",
+    "mongodb": "^2.2.24"
+  }
+}
