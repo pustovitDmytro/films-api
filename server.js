@@ -1,34 +1,35 @@
-var express = require('express');
-var app = express();
-var bodyParser = require('body-parser');
+const express = require('express');
+const app = express();
+const bodyParser = require('body-parser');
 
-var db = require('./db.js')
-var url = require('./secret.js').url;
-//var data = require('./quiz.json');
+const db = require('./db.js');
+const url = require('./secret.js').url;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
-app.set('port', (process.env.PORT || 8080));
+const port = process.env.PORT || 8080;
 
-app.get("/quiz/:id", function(req,res){
-	db.getQuestion(Number(req.params.id),res)
-})
+// app.get("/quiz/:id", function(req,res){
+// 	db.getQuestion(Number(req.params.id),res)
+// })
+//
+// app.get("/quiz",function(req,res){
+// 	db.getAll(res);
+// })
+//
 
-app.get("/quiz",function(req,res){
-	db.getAll(res);
-})
+//
+// app.post('/quiz/answer',function(req,res){
+// 	db.takeIntoAccount(Number(req.body.id), Number(req.body.answer),res);
+// })
+app.get('/',function(req,res){
+	console.log('This Api was created by pustovitDmytro');
+	db.addFilm(req);
+});
 
-app.get('',function(req,res){
-	res.send('This Api was created by pustovitDmytro');
-})
-
-app.post('/quiz/answer',function(req,res){
-	db.takeIntoAccount(Number(req.body.id), Number(req.body.answer),res);
-})
-
-app.listen(app.get('port'), function() {
-  		console.log('Node app is running on port', app.get('port'));
+app.listen(port, () => {
+	console.log('We are live on ' + port);
 		db.connect(url, function (err) {
   			if (err) {
    				console.log('Unable to connect to the mongoDB server. Error:', err);
