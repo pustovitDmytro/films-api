@@ -50,12 +50,12 @@ let state = {
 // 	}
 // };
 
-exports.addFilm = function(film){
-    console.log("addFilm",this,state.db,film);
+exports.addFilm = function(film,res){
+    console.log("addFilm",film.body);
+    return res.sendStatus(500);
 };
 exports.getFilms = (res)=> {
     const collection = state.db.collection('films');
-    console.log("getFilms",collection);
 	collection.find().toArray((err,arr)=> {
             if (err) {
                 console.log(err);

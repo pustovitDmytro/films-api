@@ -5,9 +5,6 @@ const bodyParser = require('body-parser');
 const db = require('./db.js');
 const url = require('./secret.js').url;
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
-
 const port = process.env.PORT || 8080;
 
 app.get("/quiz/:id", function(req,res){

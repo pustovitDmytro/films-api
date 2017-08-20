@@ -7,10 +7,11 @@ const bodyParser = require('body-parser');
 
 const db = require('./db.js');
 const url = require('./secret.js').url;
-require('./routes.js')(app, db);
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
+require('./routes.js')(app, db);
 const port = process.env.PORT || 8080;
+
 
 app.listen(port, () => {
     console.log('server running on port ' + port);
