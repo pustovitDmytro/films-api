@@ -53,6 +53,17 @@ let state = {
 exports.addFilm = function(film){
     console.log("addFilm",this,state.db,film);
 };
+exports.getFilms = (res)=> {
+    const collection = state.db.collection('films');
+    console.log("getFilms",collection);
+	collection.find().toArray((err,arr)=> {
+            if (err) {
+                console.log(err);
+                return res.sendStatus(500);
+            } else res.send(arr);
+        }
+	);
+};
 exports.connect = function(url,done){
  	if(state.db){
  		return done();
