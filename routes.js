@@ -6,6 +6,9 @@ module.exports = (app, db) => {
         db.getFilms(res)
     );
     app.post('/films/add',(req,res)=>
-        db.addFilm(req,res)
+        db.addFilm(db,req.body,res)
+    );
+    app.delete('/films/delete',  (req, res) =>
+        db.deleteFilm(db,req.body.id,res)
     );
 };

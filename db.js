@@ -1,4 +1,5 @@
 const MongoClient = require('mongodb').MongoClient;
+const ObjectID = require('mongodb').ObjectID;
 let state = {
 	db: null
 };
@@ -49,10 +50,27 @@ let state = {
 // 		})
 // 	}
 // };
+exports.deleteFilm = function(db,id,res){
+    let collection = state.db.collection('films');
+    obj= {_id:ObjectID(id)};
+    console.log(obj);
+    collection.remove(obj,(err, numberOfRemovedDocs)=>{
+        //console.log(err,numberOfRemovedDocs,id);
+        res.sendStatus(200);
+    });
+};
 
-exports.addFilm = function(film,res){
-    console.log("addFilm",film.body);
-    return res.sendStatus(500);
+
+exports.addFilm = function(db,{title,year,format,stars},res){
+    let collection = state.db.collection('films');
+    collection.count({title,year,format,stars}, (err, count) => {
+        if (count > 0)
+            return res.send("Film already exist");
+        else {
+            collection.insert({title, year, format, stars});
+            res.sendStatus(200);
+        }
+    });
 };
 exports.getFilms = (res)=> {
     const collection = state.db.collection('films');
