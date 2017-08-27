@@ -1,17 +1,17 @@
 /**
  * Created by pusti on 20.08.2017.
  */
-var multer  = require('multer');
-var upload = multer();
+const multer  = require('multer');
+const upload = multer();
 
-module.exports = (app, db) => {
+module.exports = (app) => {
     app.get('/films', (req,res) =>
-        db.getFilms(res)
+        require('./mongo/getFilms')(res)
     );
     app.post('/films',upload.fields([]),(req,res)=>
-        db.addFilm(db,req,res)
+        require('./mongo/addFilm')(req,res)
     );
     app.delete('/films/:id',  (req, res) =>
-        db.deleteFilm(db,req.params.id,res)
+        require('./mongo/deleteFilm')(req.params.id,res)
     );
 };

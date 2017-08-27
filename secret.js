@@ -1,1 +1,1 @@
-this.url = "mongodb://admin:1111@ds145183.mlab.com:45183/webbylab";
+module.exports = "mongodb://admin:1111@ds145183.mlab.com:45183/webbylab";
