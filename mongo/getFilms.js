@@ -8,7 +8,8 @@ module.exports = (res)=> {
             if (err) {
                 console.log(err);
                 return res.sendStatus(500);
-            } else res.send(arr);
+            }
+            else res.send(arr);
         }
     );
 };

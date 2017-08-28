@@ -14,5 +14,5 @@ module.exports = function(id,res){
         console.log(err);
         return res.sendStatus(500);
     }
-    res.sendStatus(200);
+    res.sendStatus(200);//Film was successfully deleted
 };
