@@ -8,7 +8,7 @@ module.exports = function(req,res){
     let collection = state.db.collection('films');
     collection.count({title,year,format,stars}, (err, count) => {
         if (count > 0)
-            return res.sendStatus(409);//Conflict: Film already exist
+            return res.sendStatus(210);//Film already exist
         else {
             try {
                 collection.insertOne({title, year, format, stars});
@@ -17,7 +17,7 @@ module.exports = function(req,res){
                 console.log(err);
                 return res.sendStatus(500);
             }
-            res.sendStatus(201);//OK: New film has been successfully added
+            res.sendStatus(201);//New film has been successfully added
         }
     });
 };
